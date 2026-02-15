@@ -460,6 +460,18 @@ body {
     animation: shimmerSlow 4s infinite;
 }
 
+.mix-info {
+    padding: 0 0 15px 0;
+}
+
+.mix-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--champagne);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
 @keyframes rotateDiscoSlow {
     from {
         transform: rotate(0deg);
@@ -798,6 +810,34 @@ body {
     color: rgba(255, 255, 255, 0.6);
     font-size: 0.95rem;
     font-weight: 300;
+}
+
+/* Loading state for VODs */
+.vod-card.loading {
+    pointer-events: none;
+}
+
+.loading-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--midnight-blue), var(--deep-navy));
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.loading-spinner {
+    color: var(--whiskey-gold);
+    font-size: 1rem;
+    text-align: center;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
 }
 
 .twitch-follow {
