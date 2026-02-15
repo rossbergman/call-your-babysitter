@@ -1,4 +1,4 @@
-# Call Your Babysitter - DJ ROSS
+# Call Your Babysitter - DJ Ross IRA
 
 A vibrant 80s neon-themed website for the "Call Your Babysitter" DJ party series, featuring disco balls, whiskey glasses, and endless neon vibes.
 
