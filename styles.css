@@ -33,6 +33,21 @@ body {
     line-height: 1.6;
     background: linear-gradient(135deg, var(--rich-black) 0%, var(--deep-navy) 50%, var(--midnight-blue) 100%);
     background-attachment: fixed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Improve touch targets on mobile */
+a, button, .nav-link, .cta-button {
+    -webkit-tap-highlight-color: rgba(212, 160, 82, 0.3);
+    touch-action: manipulation;
+}
+
+/* Prevent text selection on decorative elements */
+.neon-text, .section-title, .play-icon {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
 }
 
 .container {
@@ -53,6 +68,23 @@ body {
         repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(212, 160, 82, 0.02) 50px, rgba(212, 160, 82, 0.02) 51px);
     z-index: -2;
     opacity: 0.5;
+}
+
+/* Disable expensive animations on mobile */
+@media (max-width: 768px) {
+    .grid-bg {
+        opacity: 0.3;
+    }
+    
+    .stars {
+        animation: none;
+        opacity: 0.4;
+    }
+    
+    .mix-artwork::before,
+    .mix-artwork::after {
+        animation: none;
+    }
 }
 
 .stars {
@@ -188,7 +220,10 @@ body {
     letter-spacing: 0.15em;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
-    padding: 5px 10px;
+    padding: 8px 12px; /* Larger touch target */
+    min-height: 44px; /* iOS minimum touch target */
+    display: flex;
+    align-items: center;
 }
 
 .nav-link::after {
@@ -347,6 +382,11 @@ body {
     text-align: center;
     position: relative;
     overflow: hidden;
+    cursor: pointer;
+    min-height: 48px; /* Minimum touch target size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .cta-button::before {
@@ -845,50 +885,383 @@ body {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-    .party-card {
-        grid-template-columns: 1fr;
-        padding: 20px;
+
+/* Tablet (portrait) and smaller */
+@media (max-width: 992px) {
+    .container {
+        padding: 0 30px;
+    }
+    
+    .neon-text {
+        font-size: clamp(2.5rem, 8vw, 5rem);
+    }
+    
+    .neon-text.large {
+        font-size: clamp(3rem, 10vw, 6rem);
+    }
+    
+    .section-title {
+        font-size: clamp(2rem, 5vw, 3rem);
+        margin-bottom: 40px;
     }
     
     .twitch-container {
         grid-template-columns: 1fr;
+        gap: 15px;
     }
     
     .twitch-chat {
-        display: none; /* Hide chat on mobile for better experience */
+        display: none; /* Hide chat on tablet/mobile */
+    }
+}
+
+/* Mobile (landscape and smaller) */
+@media (max-width: 768px) {
+    /* Container & Spacing */
+    .container {
+        padding: 0 20px;
+    }
+    
+    .section {
+        padding: 50px 15px;
+    }
+    
+    /* Hero Section */
+    .hero {
+        min-height: 80vh;
+        padding: 30px 15px;
+    }
+    
+    .neon-text {
+        font-size: clamp(2rem, 8vw, 3.5rem);
+        letter-spacing: 0.1em;
+    }
+    
+    .neon-text.large {
+        font-size: clamp(2.5rem, 10vw, 4.5rem);
+    }
+    
+    .tagline {
+        font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+        margin-bottom: 15px;
+    }
+    
+    .dj-credit {
+        font-size: clamp(1rem, 3vw, 1.5rem);
+    }
+    
+    /* Navigation */
+    .main-nav {
+        padding: 15px 0;
+    }
+    
+    .main-nav ul {
+        gap: 15px;
+        padding: 0 10px;
+    }
+    
+    .nav-link {
+        font-size: 0.95rem;
+        letter-spacing: 0.08em;
+        padding: 5px 8px;
+    }
+    
+    /* Section Titles */
+    .section-title {
+        font-size: clamp(1.8rem, 5vw, 2.5rem);
+        margin-bottom: 30px;
+        letter-spacing: 0.15em;
+    }
+    
+    .section-description {
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+    }
+    
+    /* Party Card */
+    .party-card {
+        grid-template-columns: 1fr;
+        padding: 20px;
+        gap: 20px;
+    }
+    
+    .party-details h3 {
+        font-size: 1.6rem;
+    }
+    
+    .time {
+        font-size: 1.3rem;
+    }
+    
+    .venue h4 {
+        font-size: 1.5rem;
+    }
+    
+    .venue p {
+        font-size: 1.1rem;
+    }
+    
+    /* Mixes Grid */
+    .mixes-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .mix-card {
+        padding: 20px;
+    }
+    
+    .mix-artwork {
+        height: 180px;
+        margin-bottom: 15px;
+    }
+    
+    .mix-card h3 {
+        font-size: 1.3rem;
+    }
+    
+    .mix-date {
+        font-size: 0.9rem;
+    }
+    
+    /* Twitch/Live Section */
+    .twitch-container {
+        padding: 15px;
+        grid-template-columns: 1fr;
+    }
+    
+    .twitch-player iframe {
+        height: 300px;
+    }
+    
+    .vods-section {
+        margin-bottom: 40px;
+    }
+    
+    .vods-title {
+        font-size: 1.6rem;
+        margin-bottom: 30px;
     }
     
     .vods-grid {
         grid-template-columns: 1fr;
-    }
-    
-    .main-nav ul {
         gap: 20px;
     }
     
-    .nav-link {
+    .vod-embed {
+        padding-bottom: 56.25%;
+    }
+    
+    .vod-info {
+        padding: 15px;
+    }
+    
+    .vod-info h4 {
+        font-size: 1.1rem;
+    }
+    
+    /* Subscribe Section */
+    .subscribe-form {
+        padding: 25px;
+        max-width: 100%;
+    }
+    
+    .subscribe-form iframe {
+        width: 100% !important;
+        height: 280px !important;
+    }
+    
+    .subscribe-description {
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+    }
+    
+    .email-form {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .email-form input {
+        width: 100%;
+        min-width: 100%;
         font-size: 1rem;
     }
     
-    .section {
-        padding: 60px 20px;
+    /* CTA Buttons */
+    .cta-button {
+        padding: 12px 30px;
+        font-size: 1rem;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    
+    .all-mixes-link .cta-button {
+        max-width: 250px;
+    }
+    
+    /* Footer */
+    .footer {
+        padding: 40px 20px 20px;
     }
     
     .footer-content {
         flex-direction: column;
         text-align: center;
+        gap: 20px;
+    }
+    
+    .footer-brand h3 {
+        font-size: 1.3rem;
     }
     
     .footer-links {
         justify-content: center;
+        gap: 20px;
     }
     
-    .email-form {
+    .footer-links a {
+        font-size: 1rem;
+    }
+    
+    .footer-bottom {
+        padding-top: 20px;
+        font-size: 0.85rem;
+    }
+}
+
+/* Small Mobile (portrait) */
+@media (max-width: 480px) {
+    /* Extra tight spacing for small screens */
+    .container {
+        padding: 0 15px;
+    }
+    
+    .section {
+        padding: 40px 10px;
+    }
+    
+    .hero {
+        min-height: 70vh;
+        padding: 20px 10px;
+    }
+    
+    .neon-text {
+        font-size: clamp(1.8rem, 8vw, 2.8rem);
+    }
+    
+    .neon-text.large {
+        font-size: clamp(2.2rem, 10vw, 3.5rem);
+    }
+    
+    .tagline {
+        font-size: 0.85rem;
+    }
+    
+    .dj-credit {
+        font-size: 0.95rem;
+    }
+    
+    /* Navigation - Stack vertically on very small screens */
+    .main-nav ul {
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .nav-link {
+        font-size: 0.85rem;
+        padding: 5px 10px;
+    }
+    
+    /* Section titles */
+    .section-title {
+        font-size: 1.6rem;
+        letter-spacing: 0.1em;
+    }
+    
+    /* Party Card */
+    .party-card {
+        padding: 15px;
+    }
+    
+    .party-details h3 {
+        font-size: 1.4rem;
+    }
+    
+    .venue h4 {
+        font-size: 1.3rem;
+    }
+    
+    /* Mix cards */
+    .mix-card {
+        padding: 15px;
+    }
+    
+    .mix-artwork {
+        height: 150px;
+    }
+    
+    .mix-card h3 {
+        font-size: 1.1rem;
+    }
+    
+    /* Twitch player */
+    .twitch-player iframe {
+        height: 250px;
+    }
+    
+    .vods-title {
+        font-size: 1.4rem;
+    }
+    
+    /* Subscribe form */
+    .subscribe-form {
+        padding: 20px;
+    }
+    
+    .subscribe-form iframe {
+        height: 260px !important;
+    }
+    
+    /* Buttons */
+    .cta-button {
+        padding: 10px 25px;
+        font-size: 0.95rem;
+        letter-spacing: 0.1em;
+    }
+    
+    /* Footer */
+    .footer-brand h3 {
+        font-size: 1.1rem;
+    }
+    
+    .footer-links {
         flex-direction: column;
+        gap: 15px;
     }
     
-    .email-form input {
-        width: 100%;
+    .footer-links a {
+        font-size: 0.95rem;
+    }
+}
+
+/* Landscape mobile optimization */
+@media (max-height: 600px) and (orientation: landscape) {
+    .hero {
+        min-height: 100vh;
+        padding: 30px 20px;
+    }
+    
+    .neon-text {
+        font-size: clamp(2rem, 6vw, 3rem);
+    }
+    
+    .neon-text.large {
+        font-size: clamp(2.5rem, 8vw, 4rem);
+    }
+    
+    .section {
+        padding: 40px 20px;
     }
 }
