@@ -362,6 +362,44 @@ a, button, .nav-link, .cta-button {
     font-weight: 300;
 }
 
+/* Booking Card */
+.booking-card {
+    grid-template-columns: 1fr !important;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.booking-description {
+    font-size: 1.3rem;
+    color: var(--disco-chrome);
+    font-weight: 300;
+    letter-spacing: 0.05em;
+}
+
+.booking-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px;
+    background: rgba(212, 160, 82, 0.06);
+    border: 1px solid rgba(212, 160, 82, 0.2);
+    border-radius: 12px;
+}
+
+.booking-contact p {
+    font-size: 1.2rem;
+    color: var(--champagne);
+    font-weight: 300;
+    letter-spacing: 0.03em;
+}
+
+.party-update-note {
+    font-size: 1.15rem;
+    color: var(--disco-chrome);
+    font-weight: 300;
+    font-style: italic;
+}
+
 /* CTA Button */
 .cta-button {
     display: inline-block;
